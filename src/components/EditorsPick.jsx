@@ -16,22 +16,20 @@ function EditorsPick() {
         </p>
       </div>
 
-      {/* Kart grid'i */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-4 md:grid-rows-2 md:[grid-auto-flow:dense]">
         {categories.map((cat) => (
           <div
             key={cat.id}
-            className={`relative ${cat.h} overflow-hidden md:h-auto ${cat.span}`}
+            className={`relative ${cat.h} overflow-hidden md:h-auto transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg hover:cursor-pointer ${cat.span}`}
           >
             <img
               src={cat.img}
               alt={cat.label}
               className="h-full w-full object-cover"
             />
-            {/* Beyaz buton */}
-            <span className="absolute bottom-5 left-5 bg-white px-10 py-2 text-sm font-bold text-[#252B42] whitespace-nowrap">
+            <a href="#" className="absolute bottom-5 left-5 bg-white px-10 py-2 text-sm font-bold text-[#252B42] whitespace-nowrap">
               {cat.label}
-            </span>
+            </a>
           </div>
         ))}
       </div>

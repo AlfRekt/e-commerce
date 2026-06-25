@@ -6,7 +6,7 @@ function ProductCard({ product }) {
       <img
         src={image}
         alt={title}
-        className="h-[430px] w-full object-cover md:h-[330px]"
+        className="h-[430px] w-full object-cover md:h-auto object-contain"
       />
 
       <div className="flex flex-col items-center gap-2.5 py-6">
