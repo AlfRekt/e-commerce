@@ -1,13 +1,17 @@
+import { useNavigate } from "react-router-dom";
 function ProductCard({ product }) {
   const { image, title, department, oldPrice, newPrice, colors = [] } = product;
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center text-center">
-      <img
-        src={image}
-        alt={title}
-        className="h-[430px] w-full object-cover md:h-auto object-contain"
-      />
+    <div onClick={() => navigate(`/product/${product.id}`)} className="flex flex-col cursor-pointer items-center text-center transition-transform duration-300 hover:shadow-xl">
+      <div className="aspect-[2/3] w-full overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover"
+        />
+      </div>
 
       <div className="flex flex-col items-center gap-2.5 py-6">
         <h3 className="text-base font-bold text-[#252B42]">{title}</h3>
