@@ -53,7 +53,7 @@ function ProductInfo({ product }) {
       </div>
 
       {/* Aksiyon butonları */}
-      <div className="flex items-center mt-8 md:mt-14 gap-2.5">
+      <div className="flex items-center mt-8 md:mt-14 gap-2.5 mb-8">
         <button className="rounded bg-[#23A6F0] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1a8fd1]">
           Select Options
         </button>

@@ -28,7 +28,7 @@ function ProductDetailPage() {
     <div className="w-full">
       {/* Breadcrumb */}
       <div className="w-full bg-[#FAFAFA]">
-        <div className="flex items-center gap-2 px-6 py-12 text-sm font-bold md:px-[195px]">
+        <div className="flex items-center justify-center md:justify-start gap-2 px-6 py-12 text-sm font-bold md:px-[195px]">
           <Link to="/" className="text-[#252B42]">Home</Link>
           <ChevronRight size={16} className="text-[#BDBDBD]" />
           <Link to="/shop" className="text-[#BDBDBD]">Shop</Link>
@@ -48,7 +48,9 @@ function ProductDetailPage() {
       </div>
 
       <ProductTabs />
-      <BestSellers />
+      <div className="bg-[#FAFAFA]">
+        <BestSellers />
+      </div>
       <Clients />
     </div>
   );

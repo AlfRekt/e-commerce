@@ -13,7 +13,7 @@ function ProductCard({ product }) {
         />
       </div>
 
-      <div className="flex flex-col items-center gap-2.5 py-6">
+      <div className="flex flex-col items-center gap-2.5 py-6 bg-white w-full">
         <h3 className="text-base font-bold text-[#252B42]">{title}</h3>
         <span className="text-sm font-bold text-[#737373]">{department}</span>
 

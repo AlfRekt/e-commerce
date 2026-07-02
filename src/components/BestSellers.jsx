@@ -13,7 +13,7 @@ const bestSellerProducts = [
 
 function BestSellers() {
   return (
-    <section className="w-full px-6 py-12 md:px-[195px] md:py-24">
+    <section className="w-full px-10 py-12 md:px-[240px] md:py-24">
       <div className="mb-12 mx-auto max-w-[250px] flex flex-col items-center gap-2.5 text-center md:max-w-none">
         <span className="text-sm font-bold text-[#737373]">Featured Products</span>
         <h2 className="text-2xl font-bold text-[#252B42]">BESTSELLER PRODUCTS</h2>

@@ -6,13 +6,16 @@ const tabs = ["Description", "Additional Information", "Reviews (0)"];
 // Description sekmesinin içeriği (görsel + metin + liste)
 function DescriptionContent() {
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-      {/* Görsel */}
-      <img
-        src="/description.jpg"
-        alt="Description"
-        className="aspect-[4/3] w-full rounded object-cover"
-      />
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mx-4 md:mx-0 md:gap-10">
+      {/* Görsel + arka kare — self-start ile stretch engellendi */}
+      <div className="relative w-full self-start">
+        <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-lg bg-[#C4C4C433]" />
+        <img
+          src="/description.jpg"
+          alt="Description"
+          className="relative aspect-[4/3] w-full rounded-lg object-cover"
+        />
+      </div>
 
       {/* Orta metin */}
       <div className="flex flex-col gap-4">
@@ -62,7 +65,7 @@ function ProductTabs() {
   return (
     <div className="w-full">
       {/* Sekme çubuğu */}
-      <div className="flex flex-wrap justify-center gap-6 py-10 md:gap-10">
+      <div className="flex flex-wrap justify-center gap-6 pt-10 pb-4 md:py-10 md:gap-10">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -76,7 +79,7 @@ function ProductTabs() {
         ))}
       </div>
 
-      <div className="mx-6 border-t border-[#ECECEC] md:mx-[195px]" />
+      <div className="hidden md:block mx-6 border-t border-[#ECECEC] md:mx-[195px]" />
 
       {/* İçerik */}
       <div className="px-6 py-12 md:px-[195px]">
