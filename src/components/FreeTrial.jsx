@@ -9,7 +9,7 @@ const socials = [
 
 function FreeTrial() {
   return (
-    <div className="flex flex-col items-center gap-6 px-6 py-16 text-center md:py-24">
+    <div className="flex flex-col items-center gap-6 px-6 py-32 pb-48 text-center md:py-24">
       <h2 className="text-3xl font-bold text-[#252B42] md:text-4xl">Start your 14 days free trial</h2>
       <p className="max-w-md text-sm leading-relaxed text-[#737373]">
         Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT

@@ -15,7 +15,7 @@ function TeamHero() {
       <div className="flex flex-col items-center gap-4 px-6 py-16 text-center">
         <span className="text-sm font-bold tracking-wider text-[#737373]">WHAT WE DO</span>
         <h1 className="text-4xl font-bold text-[#252B42] md:text-5xl">Innovation tailored for you</h1>
-        <nav className="flex items-center gap-2 text-sm font-bold">
+        <nav className="flex items-center mt-10 gap-2 text-sm font-bold">
           <Link to="/" className="text-[#252B42]">Home</Link>
           <ChevronRight size={16} className="text-[#BDBDBD]" />
           <span className="text-[#BDBDBD]">Team</span>

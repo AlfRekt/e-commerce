@@ -25,7 +25,7 @@ function ContactInfo() {
           <div
             key={id}
             className={`flex flex-col items-center gap-4 px-12 py-10 text-center ${
-              highlighted ? "bg-[#252B42] text-white md:py-16" : " bg-white text-[#252B42]"
+              highlighted ? "bg-[#252B42] text-white md:py-16" : " bg-[#FAFAFA] md:bg-white text-[#252B42]"
             }`}
           >
             <Icon size={40} className="text-[#23A6F0]" />
