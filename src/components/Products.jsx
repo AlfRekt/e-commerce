@@ -9,7 +9,7 @@ function Products({ products = [], view = "grid" }) {
       : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
 
   return (
-    <div className={`grid gap-8 ${layout}`}>
+    <div className={`grid px-2 gap-8 ${layout}`}>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

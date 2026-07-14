@@ -1,44 +1,69 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts, setFilter, setSort, setOffset } from "../store/actions/productActions";
 import ShopHero from "../components/ShopHero";
 import ShopCategoryCards from "../components/ShopCategoryCards";
 import ShopToolbar from "../components/ShopToolbar";
 import Products from "../components/Products";
 import Pagination from "../components/Pagination";
 import Clients from "../components/Clients";
-import { useState } from "react";
-
-const COLORS = ["#23A6F0", "#23856D", "#E77C40", "#252B42"];
-
-const shopProducts = [
-  { id: 1,  image: "/product-1.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 2,  image: "/product-2.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 3,  image: "/product-3.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 4,  image: "/product-4.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 5,  image: "/product-5.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 6,  image: "/product-6.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 7,  image: "/product-7.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 8,  image: "/product-8.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 9,  image: "/product-1.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 10, image: "/product-2.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 11, image: "/product-3.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-  { id: 12, image: "/product-4.jpg",  title: "Graphic Design", department: "English Department", oldPrice: "16.48", newPrice: "6.48", colors: COLORS },
-];
+import Spinner from "../components/Spinner";
 
 function ShopPage() {
+  const { categoryId } = useParams();
+  const dispatch = useDispatch();
   const [view, setView] = useState("grid");
-  
+
+  const { productList, total, fetchState, limit, offset, filter, sort } = useSelector(
+    (s) => s.product
+  );
+
+  useEffect(() => {
+    const params = { limit, offset };
+    if (categoryId) params.category = categoryId;
+    if (filter) params.filter = filter;
+    if (sort) params.sort = sort;
+
+    dispatch(fetchProducts(params));
+  }, [dispatch, categoryId, filter, sort, limit, offset]);
+
+  const handleApply = ({ filter, sort }) => {
+    dispatch(setFilter(filter));
+    dispatch(setSort(sort));
+    dispatch(setOffset(0));
+  };
+
+  const handlePageChange = (page) => {
+    dispatch(setOffset((page - 1) * limit));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="w-full">
       <ShopHero />
       <ShopCategoryCards />
-      <ShopToolbar 
-        resultCount={shopProducts.length}
+      <ShopToolbar
+        resultCount={total}
         view={view}
         onViewChange={setView}
+        onApply={handleApply}
       />
-      <div className="px-6 py-12 md:px-[195px]">
-        <Products products={shopProducts} view={view} />
+
+      <div className="px-8 py-12 md:px-[195px]">
+        {(fetchState === "FETCHING" || fetchState === "NOT_FETCHED") && <Spinner />}
+        {fetchState === "FAILED" && (
+          <p className="text-center text-red-500">Failed to load products.</p>
+        )}
+        {fetchState === "FETCHED" && <Products products={productList} view={view} />}
       </div>
-      <Pagination />
+
+      <Pagination 
+        total={total}
+        limit={limit}
+        offset={offset}
+        onPageChange={handlePageChange}
+      />
       <Clients />
     </div>
   );

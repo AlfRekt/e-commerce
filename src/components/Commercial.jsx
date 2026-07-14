@@ -7,7 +7,7 @@ import {
 function Commercial() {
     return (
     <div className="hidden md:block w-full bg-[#252B42] text-white text-sm font-bold">
-        <div className="mx-auto flex w-full items-center justify-between px-8 py-4">
+        <div className="mx-auto flex w-full items-center justify-between px-8 py-4 md:px-[195px]">
             <div className="flex items-center gap-6">
                 <a href="tel:(225)555-0118" className="flex items-center gap-1.5">
                 <Phone size={16} />

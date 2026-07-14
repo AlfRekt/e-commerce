@@ -22,10 +22,10 @@ function NeuralUniverse() {
 
         {/* İki buton: mobilde alt alta, sm'den itibaren yan yana */}
         <div className="flex flex-col gap-5 md:gap-3 sm:flex-row">
-          <button className="rounded bg-[#2DC071] px-9 py-4 text-sm font-bold text-white transition hover:bg-[#26a862]">
+          <button className="rounded bg-[#2DC071] px-9 py-4 text-sm font-bold text-white transition hover:cursor-pointer hover:bg-[#26a862]">
             BUY NOW
           </button>
-          <button className="rounded border border-[#2DC071] px-9 py-4 text-sm font-bold text-[#2DC071] transition hover:bg-[#2DC071] hover:text-white">
+          <button className="rounded border border-[#2DC071] px-9 py-4 text-sm font-bold text-[#2DC071] transition hover:cursor-pointer hover:bg-[#2DC071] hover:text-white">
             READ MORE
           </button>
         </div>

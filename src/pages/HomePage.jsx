@@ -47,7 +47,6 @@ const heroSlides2 = [
   },
 ];
 
-// Bandage hero slide'ı: arka plan görsel + sol tarafta yazı/buton
 const renderHero = (item) => (
   <div
     className="relative h-[792px] w-full bg-cover bg-center bg-no-repeat"
@@ -63,7 +62,7 @@ const renderHero = (item) => (
       <p className="text-lg w-full text-center md:text-left max-w-80/100 md:max-w-45/100 leading-relaxed text-white text-[20px]">
         {item.description}
       </p>
-      <button className="rounded bg-[#2DC071] px-[40px] py-[15px] text-base font-bold text-white transition hover:bg-[#26a862] md:text-2xl">
+      <button className="rounded bg-[#2DC071] px-[40px] py-[15px] text-base font-bold text-white transition hover:cursor-pointer hover:bg-[#26a862] md:text-2xl">
         {item.ctaText}
       </button>
     </div>
@@ -87,7 +86,7 @@ const renderHero2 = (item) => (
       </p>
       <div className="flex flex-col md:flex-row items-center gap-6">
         <span className="text-2xl font-bold text-white">${item.price}</span>
-        <button className="rounded bg-[#2DC071] px-[40px] py-[15px] text-base font-bold text-white transition hover:bg-[#26a862] md:text-sm">
+        <button className="rounded bg-[#2DC071] px-[40px] py-[15px] text-base font-bold text-white transition hover:cursor-pointer hover:bg-[#26a862] md:text-sm">
           {item.ctaText}
         </button>
       </div> 

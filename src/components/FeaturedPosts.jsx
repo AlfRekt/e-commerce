@@ -8,7 +8,7 @@ const posts = [
 
 function FeaturedPosts() {
   return (
-    <section className="w-full px-6 py-12 md:px-[195px] md:py-24">
+    <section className="w-full px-10 py-12 md:px-[195px] md:py-24">
       <div className="mb-12 flex flex-col items-center gap-3 text-center">
         <span className="text-sm font-bold text-[#23A6F0]">Practice Advice</span>
         <h2 className="text-4xl font-bold text-[#252B42]">Featured Posts</h2>

@@ -56,7 +56,7 @@ function Footer() {
               />
               <button
                 type="submit"
-                className="rounded-r bg-[#23A6F0] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#1a8fd1]"
+                className="rounded-r bg-[#23A6F0] px-5 py-3 text-sm font-medium text-white transition hover:cursor-pointer hover:bg-[#1a8fd1]"
               >
                 Subscribe
               </button>

@@ -1,12 +1,14 @@
 import { Star, Heart, ShoppingCart, Eye } from "lucide-react";
 
+const COLORS = ["#23A6F0", "#23856D", "#E77C40", "#252B42"];
+
 function ProductInfo({ product }) {
-  const { title, rating, reviewCount, price, inStock, description, colors = [] } = product;
+  const { name, rating, price, stock, description } = product;
 
   return (
     <div className="flex flex-col px-8 gap-3">
       {/* Başlık */}
-      <h1 className="text-xl font-bold text-[#252B42]">{title}</h1>
+      <h1 className="text-xl font-bold text-[#252B42]">{name}</h1>
 
       {/* Yıldızlar + reviews */}
       <div className="flex items-center gap-2">
@@ -23,7 +25,7 @@ function ProductInfo({ product }) {
             />
           ))}
         </div>
-        <span className="text-sm font-bold text-[#737373]">{reviewCount} Reviews</span>
+        <span className="text-sm font-bold text-[#737373]">{rating?.toFixed(1)}</span>
       </div>
 
       {/* Fiyat */}
@@ -32,7 +34,7 @@ function ProductInfo({ product }) {
       {/* Stok durumu */}
       <div className="flex items-center gap-2 text-sm font-bold">
         <span className="text-[#737373]">Availability :</span>
-        <span className="text-[#23A6F0]">{inStock ? "In Stock" : "Out of Stock"}</span>
+        <span className="text-[#23A6F0]">{stock > 0 ? "In Stock" : "Out of Stock"}</span>
       </div>
 
       {/* Açıklama */}
@@ -43,7 +45,7 @@ function ProductInfo({ product }) {
 
       {/* Renk seçenekleri */}
       <div className="flex items-center gap-2">
-        {colors.map((color) => (
+        {COLORS.map((color) => (
           <span
             key={color}
             className="h-8 w-8 cursor-pointer rounded-full"

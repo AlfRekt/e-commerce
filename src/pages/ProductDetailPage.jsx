@@ -1,56 +1,57 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { ChevronRight, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { fetchProductById } from "../store/actions/productActions";
 import ProductGallery from "../components/ProductGallery";
 import ProductInfo from "../components/ProductInfo";
 import ProductTabs from "../components/ProductTabs";
 import BestSellers from "../components/BestSellers";
 import Clients from "../components/Clients";
-
-// Şimdilik örnek ürün — sonra id'ye göre gerçek veriyi çekeceğiz
-const sampleProduct = {
-  id: 1,
-  title: "Floating Phone",
-  rating: 4,
-  reviewCount: 10,
-  price: "1,139.33",
-  inStock: true,
-  description:
-    "Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.",
-  colors: ["#23A6F0", "#2DC071", "#E77C40", "#252B42"],
-  images: ["/product-1.jpg", "/product-2.jpg"],
-};
+import Spinner from "../components/Spinner";
 
 function ProductDetailPage() {
   const { productId } = useParams();
-  const product = sampleProduct; // ileride: id === productId olan ürünü bul/çek
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const product = useSelector((s) => s.product.product);
+  const fetchState = useSelector((s) => s.product.fetchState);
+
+  useEffect(() => {
+    dispatch(fetchProductById(productId));
+  }, [dispatch, productId]);
+
+  if (fetchState === "FETCHING") return <Spinner />;
+  if (fetchState === "FAILED" || !product?.id) {
+    return <p className="py-20 text-center text-red-500">Product not found.</p>;
+  }
 
   return (
     <div className="w-full">
       {/* Breadcrumb */}
       <div className="w-full bg-[#FAFAFA]">
-        <div className="flex items-center justify-center md:justify-start gap-2 px-6 py-12 text-sm font-bold md:px-[195px]">
-          <Link to="/" className="text-[#252B42]">Home</Link>
-          <ChevronRight size={16} className="text-[#BDBDBD]" />
-          <Link to="/shop" className="text-[#BDBDBD]">Shop</Link>
+        <div className="flex items-center gap-4 px-6 py-6 md:px-[195px]">
+          <div className="flex items-center gap-2 text-sm font-bold">
+            <Link to="/" className="text-[#252B42]">Home</Link>
+            <ChevronRight size={16} className="text-[#BDBDBD]" />
+            <Link to="/shop" className="text-[#BDBDBD]">Shop</Link>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col bg-[#FAFAFA] gap-8 px-6 pb-8 md:flex-row md:px-[195px] md:pb-12">
-        {/* Sol: galeri */}
-        <div className="md:w-1/4">
-          <ProductGallery images={product.images} />
+      <div className="mx-auto flex max-w-[1100px] flex-col gap-10 px-6 py-8 md:flex-row md:py-12">
+        <div className="md:w-1/2">
+          <ProductGallery images={product.images?.map((i) => i.url) ?? []} />
         </div>
-
-        {/* Sağ: ürün bilgisi (sıradaki adım) */}
-        <div className="md:w-3/4">
+        <div className="md:w-1/2">
           <ProductInfo product={product} />
         </div>
       </div>
 
       <ProductTabs />
-      <div className="bg-[#FAFAFA]">
-        <BestSellers />
-      </div>
+      <BestSellers />
       <Clients />
     </div>
   );

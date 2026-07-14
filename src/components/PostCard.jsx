@@ -44,7 +44,7 @@ function PostCard({ post }) {
               key={tag}
               type="button"
               onClick={(e) => handleTagClick(e, tag)}
-              className="text-[#737373] transition-colors hover:text-[#23A6F0]"
+              className="text-[#737373] transition-colors hover:cursor-pointer hover:text-[#23A6F0]"
             >
               {tag}
             </button>
@@ -54,19 +54,16 @@ function PostCard({ post }) {
         <h3 className="text-xl text-[#252B42]">{title}</h3>
         <p className="text-sm text-[#737373]">{description}</p>
 
-        {/* Tarih + yorum */}
         <div className="flex items-center justify-between text-xs">
-          {/* Tarih — tıklanmıyor, düz metin */}
           <span className="flex items-center gap-1.5 text-[#737373]">
             <Clock size={16} className="text-[#23A6F0]" />
             {date}
           </span>
 
-          {/* Yorum — gri, hover'da mavi, tıklanabilir */}
           <button
             type="button"
             onClick={handleCommentsClick}
-            className="flex items-center gap-1.5 text-[#737373] transition-colors hover:text-[#23A6F0]"
+            className="flex items-center gap-1.5 text-[#737373] transition-colors hover:cursor-pointer hover:text-[#23A6F0]"
           >
             <BarChart2 size={16} className="text-[#23856D]" />
             {comments} comments
